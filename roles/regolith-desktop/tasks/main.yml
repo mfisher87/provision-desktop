@@ -1,0 +1,20 @@
+---
+
+- name: "Configure Regolith Desktop signing key"
+  get_url:
+    url: "https://regolith-desktop.org/regolith.key"
+    dest: "/usr/share/keyrings/regolith-desktop.asc"
+
+- name: "Configure Regolith Desktop Apt repository"
+  apt_repository:
+    filename: "regolith-desktop"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-desktop.asc] https://regolith-desktop.org/release-ubuntu-jammy-amd64 jammy main"
+    state: "present"
+
+- name: "Install Regolith Desktop"
+  apt:
+    name: 
+      - "regolith-desktop"
+      - "regolith-compositor-picom-glx"
+    state: "latest"
+    update_cache: true

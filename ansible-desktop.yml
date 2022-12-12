@@ -1,0 +1,19 @@
+---
+
+- name: "Desktop environment playbook"
+  hosts: "localhost"
+  roles:
+    # Common roles
+    - role: "locales"
+      become: true
+    - role: "common"
+      become: true
+    # - { role: dotfiles, become: true }
+    # - { role: projects-installer }
+    # Server roles
+    # - { role: docker, become: true }
+    # Desktop roles
+    - role: "regolith-desktop"
+      become: true
+    # User roles
+    # ...
