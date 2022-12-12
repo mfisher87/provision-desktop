@@ -27,6 +27,7 @@
     - "tree"
     - "vim"
     - "wget"
+    - "xclip"
 
 - name: "Upgrade installed packages"
   apt: "upgrade=yes"
