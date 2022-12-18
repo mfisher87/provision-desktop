@@ -18,3 +18,42 @@
       - "regolith-compositor-picom-glx"
     state: "latest"
     update_cache: true
+
+# Customizations
+- name: "Install Regolith Desktop customization packages"
+  apt:
+    name: 
+      - "rofi"
+      - "regolith-look-nord"
+    state: "latest"
+    update_cache: true
+
+- name: "Remove Regolith Desktop config partials redundant with custom config"
+  apt:
+    name:
+      - "regolith-i3-base-launchers"
+      - "regolith-i3-control-center-regolith"
+      - "regolith-i3-default-style"
+      - "regolith-i3-ftue"
+      - "regolith-i3-gaps-partial"
+      - "regolith-i3-i3xrocks"
+      - "regolith-i3-ilia"
+      - "regolith-i3-navigation"
+      - "regolith-i3-resize"
+      - "regolith-i3-session"
+      - "regolith-i3-swap-focus"
+      - "regolith-i3-workspace-config"
+    state: "absent"
+
+- name: "Install i3xrocks scripts"
+  get_url:
+    url: "https://raw.githubusercontent.com/regolith-linux/regolith-i3xrocks-config/master/scripts/{{item}}"
+    dest: "/usr/share/i3xrocks/scripts"
+    mode: "u+x,g+x,o+x"
+  with_items:
+    - "temp"
+    - "memory"
+    - "disk-capacity"
+    - "wifi"
+    - "volume"
+    - "media-player"
