@@ -1,3 +1,3 @@
 # Regolith
 
-* Install personal config to go with customized packages
+* Re-do my i3 config as partials
