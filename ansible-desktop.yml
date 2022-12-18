@@ -5,8 +5,10 @@
   roles:
     # Common roles
     - role: "locales"
+      tags: "locales"
       become: true
     - role: "common"
+      tags: "common"
       become: true
     # - { role: dotfiles, become: true }
     # - { role: projects-installer }
@@ -14,6 +16,7 @@
     # - { role: docker, become: true }
     # Desktop roles
     - role: "regolith-desktop"
+      tags: ["regolith", "regolith-desktop"]
       become: true
     # User roles
     # ...
