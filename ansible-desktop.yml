@@ -18,5 +18,8 @@
     - role: "regolith-desktop"
       tags: ["regolith", "regolith-desktop"]
       become: true
+    - role: "slack"
+      tags: ["slack"]
+      become: false
     # User roles
     # ...
