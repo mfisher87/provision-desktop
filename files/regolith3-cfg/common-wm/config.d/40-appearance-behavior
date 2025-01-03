@@ -1,0 +1,69 @@
+###############################################################################
+# i3 Appearance and Behavior
+###############################################################################
+
+# Disable titlebar
+set_from_resource $wm.window.border.size wm.window.border.size 1
+set_from_resource $wm.floatingwindow.border.size wm.floatingwindow.border.size 1
+default_border pixel $wm.window.border.size
+default_floating_border pixel $wm.floatingwindow.border.size
+
+# Specify the distance between windows in pixels. (i3-gaps)
+set_from_resource $wm.gaps.inner.size wm.gaps.inner.size 5
+set_from_resource $wm.gaps.outer.size wm.gaps.outer.size 0
+gaps inner $wm.gaps.inner.size
+gaps outer $wm.gaps.outer.size
+
+# Only enable gaps on a workspace when there is at least one container
+set_from_resource $wm.gaps.smart wm.gaps.smart on
+smart_gaps $wm.gaps.smart
+
+# Enable popup during fullscreen
+set_from_resource $wm.gaps.popup_during_fullscreen wm.gaps.popup_during_fullscreen smart
+popup_during_fullscreen $wm.gaps.popup_during_fullscreen
+
+# window focus follows your mouse movements as the mouse crosses window borders
+set_from_resource $wm.gaps.focus_follows_mouse wm.gaps.focus_follows_mouse no
+focus_follows_mouse $wm.gaps.focus_follows_mouse
+
+# Cause Settings app to float above tiled windows
+floating_maximum_size -1 x -1
+for_window [class="floating_window"] floating enable
+
+
+###############################################################################
+# i3 Colors and Fonts
+###############################################################################
+
+# Create variables from Xresources for i3's look.
+set_from_resource $focused.color.border wm.client.focused.color.border "#002b36"
+set_from_resource $focused.color.background wm.client.focused.color.background "#586e75"
+set_from_resource $focused.color.text wm.client.focused.color.text "#fdf6e3"
+set_from_resource $focused.color.indicator wm.client.focused.color.indicator "#268bd2"
+set_from_resource $focused.color.child_border wm.client.focused.color.child_border
+
+set_from_resource $focused_inactive.color.border wm.client.focused_inactive.color.border "#002b36"
+set_from_resource $focused_inactive.color.background wm.client.focused_inactive.color.background "#073642"
+set_from_resource $focused_inactive.color.text wm.client.focused_inactive.color.text "#839496"
+set_from_resource $focused_inactive.color.indicator wm.client.focused_inactive.color.indicator "#073642"
+set_from_resource $focused_inactive.color.child_border wm.client.focused_inactive.color.child_border
+
+set_from_resource $unfocused.color.border wm.client.unfocused.color.border "#002b36"
+set_from_resource $unfocused.color.background wm.client.unfocused.color.background "#073642"
+set_from_resource $unfocused.color.text wm.client.unfocused.color.text "#839496"
+set_from_resource $unfocused.color.indicator wm.client.unfocused.color.indicator "#073642"
+set_from_resource $unfocused.color.child_border wm.client.unfocused.color.child_border
+
+set_from_resource $urgent.color.border wm.client.urgent.color.border "#002b36"
+set_from_resource $urgent.color.background wm.client.urgent.color.background "#dc322f"
+set_from_resource $urgent.color.text wm.client.urgent.color.text "#fdf6e3"
+set_from_resource $urgent.color.indicator wm.client.urgent.color.indicator "#002b36"
+set_from_resource $urgent.color.child_border wm.client.urgent.color.child_border
+
+
+# Window Border color
+# class                 border                             background                         text                               indicator                          child_border
+client.focused          $focused.color.border              $focused.color.background          $focused.color.text                $focused.color.indicator           $focused.color.child_border
+client.focused_inactive $focused_inactive.color.border     $focused_inactive.color.background $focused_inactive.color.text       $focused_inactive.color.indicator  $focused_inactive.color.child_border
+client.unfocused        $unfocused.color.border            $unfocused.color.background        $unfocused.color.text              $unfocused.color.indicator         $unfocused.color.child_border
+client.urgent           $urgent.color.border               $urgent.color.background           $urgent.color.text                 $urgent.color.indicator            $urgent.color.child_border
