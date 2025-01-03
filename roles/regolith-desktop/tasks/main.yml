@@ -1,18 +1,18 @@
 ---
 
 - name: "Configure Regolith Desktop signing key"
-  get_url:
+  ansible.builtin.get_url:
     url: "https://regolith-desktop.org/regolith.key"
     dest: "/usr/share/keyrings/regolith-desktop.asc"
 
 - name: "Configure Regolith Desktop Apt repository"
-  apt_repository:
+  ansible.builtin.apt_repository:
     filename: "regolith-desktop"
     repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-desktop.asc] https://regolith-desktop.org/release-ubuntu-jammy-amd64 jammy main"
     state: "present"
 
 - name: "Install Regolith Desktop"
-  apt:
+  ansible.builtin.apt:
     name: 
       - "regolith-desktop"
       - "regolith-compositor-picom-glx"
@@ -29,7 +29,7 @@
     update_cache: true
 
 - name: "Remove Regolith Desktop config partials redundant with custom config"
-  apt:
+  ansible.builtin.apt:
     name:
       - "regolith-i3-base-launchers"
       - "regolith-i3-control-center-regolith"
@@ -59,7 +59,7 @@
     - "media-player"
 
 - name: "Install custom config"
-  file:
+  ansible.builtin.file:
     src: "{{playbook_dir}}/files/regolith2-cfg"
     dest: "/home/{{ansible_user_id}}/.config/regolith2"
     owner: "{{ansible_user_id}}"
