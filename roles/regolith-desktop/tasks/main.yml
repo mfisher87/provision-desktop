@@ -15,48 +15,61 @@
   ansible.builtin.apt:
     name: 
       - "regolith-desktop"
-      - "regolith-compositor-picom-glx"
+      - "regolith-session-flashback"  # X11
+      # - "regolith-session-sway"       # Wayland
+      - "regolith-look-nord"
+      - "rofi"  # The default 'ilia' launcher is a bit too fiddly for me (https://github.com/regolith-linux/ilia/issues/26)
+      # X11 bar widgets
+      - "i3xrocks-temp"
+      - "i3xrocks-memory"
+      - "i3xrocks-disk-capacity"
+      - "i3xrocks-wifi"
+      - "i3xrocks-volume"
+      - "i3xrocks-media-player"
+      - "i3xrocks-battery"
+      # Dependencies of our config; because we removed the regolith config that
+      # depends on these, apt will think they are no longer required unless we
+      # explicitly install them:
+      - "gtklock"
+      - "i3-swap-focus"
+      - "i3status-rs"
+      - "i3xrocks"
     state: "latest"
     update_cache: true
 
-# Customizations
-- name: "Install Regolith Desktop customization packages"
-  apt:
-    name: 
-      - "rofi"
-      - "regolith-look-nord"
-    state: "latest"
-    update_cache: true
+# TODO: Sway.
+#
+#   See https://github.com/regolith-linux/regolith-desktop/issues/920
+#
+#   * Update /etc/gdm/custom.conf.
+#     * Replace WaylandEnable=False with True
+#   * Install "regolith-session-sway", other needed package?
+#   * Fix screen sharing issues: https://github.com/regolith-linux/regolith-desktop/issues/920
+#      * Create ~/.config/environment.d/xdg.conf containing XDG_CURRENT_DESKTOP=GNOME:sway ?
+#      * Update /usr/bin/regolith-session-wayland ?
 
 - name: "Remove Regolith Desktop config partials redundant with custom config"
   ansible.builtin.apt:
     name:
-      - "regolith-i3-base-launchers"
+      - "regolith-wm-base-launchers"
+      - "regolith-wm-navigation"
+      - "regolith-wm-swap-focus"
+      - "regolith-wm-workspace-config"
+      - "regolith-wm-resize"
+      - "regolith-wm-ftue"  # first-time user experience
       - "regolith-i3-control-center-regolith"
-      - "regolith-i3-default-style"
-      - "regolith-i3-ftue"
-      - "regolith-i3-gaps-partial"
-      - "regolith-i3-i3xrocks"
+      - "regolith-sway-control-center-regolith"
       - "regolith-i3-ilia"
-      - "regolith-i3-navigation"
-      - "regolith-i3-resize"
+      - "regolith-sway-ilia"
       - "regolith-i3-session"
-      - "regolith-i3-swap-focus"
-      - "regolith-i3-workspace-config"
+      - "regolith-sway-session"
+      - "regolith-sway-gtklock"
+      - "regolith-i3-i3xrocks"
+      - "regolith-sway-i3status-rs"
+      # # NOT TESTED
+      # - "regolith-i3-default-style"
+      # - "regolith-i3-gaps-partial"
     state: "absent"
-
-- name: "Install i3xrocks scripts"
-  get_url:
-    url: "https://raw.githubusercontent.com/regolith-linux/regolith-i3xrocks-config/master/scripts/{{item}}"
-    dest: "/usr/share/i3xrocks/scripts"
-    mode: "u+x,g+x,o+x"
-  with_items:
-    - "temp"
-    - "memory"
-    - "disk-capacity"
-    - "wifi"
-    - "volume"
-    - "media-player"
 
 - name: "Find config files for symlinking"
   ansible.builtin.find:
