@@ -2,7 +2,6 @@
 # sway bar
 ###############################################################################
 
-
 set_from_resource $wm.bar.position wm.bar.position bottom
 set_from_resource $wm.bar.font wm.bar.font monospace
 set_from_resource $wm.bar.separatorchar wm.bar.separatorchar " "

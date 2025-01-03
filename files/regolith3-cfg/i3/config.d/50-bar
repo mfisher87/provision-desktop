@@ -12,7 +12,10 @@ set_from_resource $wm.bar.stripworkspacenumbers wm.bar.stripworkspacenumbers yes
 # set_from_resource $wm.bar.mode wm.bar.mode dock
 
 # i3xrocks config file. Override this for custom status indicators on the bar.
-set_from_resource $wm.bar.status_command wm.bar.status_command i3xrocks -u ~/.config/regolith2/i3xrocks/conf.d -d /usr/share/i3xrocks/conf.d
+# set_from_resource $wm.bar.status_command wm.bar.status_command i3xrocks -u ~/.config/regolith2/i3xrocks/conf.d -d /usr/share/i3xrocks/conf.d
+## Fix to use bar config from home dir
+set_from_resource $wm.bar.status_command wm.bar.status_command i3xrocks -d ~/.config/regolith3/i3xrocks/conf.d
+
 
 # The bar configuration
 bar {
