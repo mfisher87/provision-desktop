@@ -20,7 +20,10 @@
       tags: ["regolith", "regolith-desktop"]
       become: true
     - role: "slack"
-      tags: ["slack"]
+      tags: ["chat"]
+      become: false
+    - role: "zulip"
+      tags: ["chat"]
       become: false
     # User roles
     # ...
