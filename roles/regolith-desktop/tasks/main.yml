@@ -2,13 +2,13 @@
 
 - name: "Configure Regolith Desktop signing key"
   get_url:
-    url: "https://regolith-desktop.org/regolith.key"
+    url: "https://archive.regolith-desktop.com/regolith.key"
     dest: "/usr/share/keyrings/regolith-desktop.asc"
 
 - name: "Configure Regolith Desktop Apt repository"
   apt_repository:
     filename: "regolith-desktop"
-    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-desktop.asc] https://regolith-desktop.org/release-ubuntu-jammy-amd64 jammy main"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-desktop.asc] https://archive.regolith-desktop.com/ubuntu/stable noble v3.2"
     state: "present"
 
 - name: "Install Regolith Desktop"
@@ -45,23 +45,22 @@
       - "regolith-i3-workspace-config"
     state: "absent"
 
-- name: "Install i3xrocks scripts"
-  get_url:
-    url: "https://raw.githubusercontent.com/regolith-linux/regolith-i3xrocks-config/master/scripts/{{item}}"
-    dest: "/usr/share/i3xrocks/scripts"
-    mode: "u+x,g+x,o+x"
-  with_items:
-    - "temp"
-    - "memory"
-    - "disk-capacity"
-    - "wifi"
-    - "volume"
-    - "media-player"
+- name: "Install Regolith Desktop"
+  apt:
+    name: 
+      - "i3xrocks-temp"
+      - "i3xrocks-memory"
+      - "i3xrocks-disk-capacity"
+      - "i3xrocks-wifi"
+      - "i3xrocks-volume"
+      - "i3xrocks-media-player"
+    state: "latest"
+    update_cache: true
 
 - name: "Install custom config"
   file:
-    src: "{{playbook_dir}}/files/regolith2-cfg"
-    dest: "/home/{{ansible_user_id}}/.config/regolith2"
+    src: "{{playbook_dir}}/files/regolith3-cfg"
+    dest: "/home/{{ansible_user_id}}/.config/regolith3"
     owner: "{{ansible_user_id}}"
     group: "{{ansible_user_id}}"
     state: "link"
