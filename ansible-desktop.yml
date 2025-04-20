@@ -10,7 +10,8 @@
     - role: "common"
       tags: "common"
       become: true
-    # - { role: dotfiles, become: true }
+    - role: "dotfiles"
+      tags: "dotfiles"
     # - { role: projects-installer }
     # Server roles
     # - { role: docker, become: true }

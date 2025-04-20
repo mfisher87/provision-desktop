@@ -1,0 +1,13 @@
+- name: "Clone dotfiles bare repo"
+  ansible.builtin.git:
+    repo: 'https://github.com/mfisher87/dotfiles.git'
+    bare: true
+    dest: "{{ ansible_env.HOME }}/.dotfiles"
+
+- name: "Hide untracked files in `git status`"
+  ansible.builtin.command:
+    cmd: "git --git-dir={{ ansible_env.HOME }}/.dotfiles --work-tree={{ ansible_env.HOME }} config --local status.showUntrackedFiles no"
+
+- name: "Checkout main branch to worktree"
+  ansible.builtin.command:
+    cmd: "git --git-dir={{ ansible_env.HOME }}/.dotfiles --work-tree={{ ansible_env.HOME }} switch -f main"
