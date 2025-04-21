@@ -1,5 +1,9 @@
 ---
 
+- name: "Get Ubuntu codename"
+  set_fact:
+    UBUNTU_CODENAME: "{{ lookup('file', '/etc/os-release') | regex_search('UBUNTU_CODENAME=(.*)', '\\1') | first }}"
+
 - name: "Configure Regolith Desktop signing key"
   get_url:
     url: "https://archive.regolith-desktop.com/regolith.key"
@@ -8,7 +12,7 @@
 - name: "Configure Regolith Desktop Apt repository"
   apt_repository:
     filename: "regolith-desktop"
-    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-desktop.asc] https://archive.regolith-desktop.com/ubuntu/stable noble v3.2"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-desktop.asc] https://archive.regolith-desktop.com/ubuntu/stable {{ UBUNTU_CODENAME }} v3.2"
     state: "present"
 
 - name: "Install Regolith Desktop"
