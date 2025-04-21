@@ -1,0 +1,35 @@
+###############################################################################
+# Launcher utility
+###############################################################################
+
+# NEW DEFAULT CONFIG:
+# Load stylesheet if exists
+set_from_resource $ilia.stylesheet ilia.stylesheet
+
+# OLD CONFIG:
+# TODO: Switch to ilia once it supports matching like rofi with `-drun-match-fields name`; install regolith-i3-ilia
+# TODO: Restore?
+# set_from_resource $rofiTheme rofi.theme /etc/regolith/styles/lascaille/rofi.rasi
+
+## Launch // Application Search // <> Space ##
+set_from_resource $wm.binding.launcher.app_search wm.binding.launcher.app space
+set_from_resource $wm.program.launcher.app_search wm.program.launcher.app rofi -show drun -sort -sorting-method fzf -theme $rofiTheme
+bindsym $mod+$wm.binding.launcher.app_search exec $wm.program.launcher.app_search
+
+## Launch // Command // <><Shift> Space ##
+set_from_resource $wm.binding.launcher.cmd wm.binding.launcher.cmd Shift+space
+set_from_resource $wm.program.launcher.cmd wm.program.launcher.cmd rofi -show run -theme $rofiTheme
+# set_from_resource $wm.program.launcher.cmd wm.program.launcher.cmd ilia -p terminal -t $ilia.stylesheet
+bindsym $mod+$wm.binding.launcher.cmd exec $wm.program.launcher.cmd
+
+## Navigate // Window by Name // <><Ctrl> Space ##
+set_from_resource $wm.binding.launcher.window wm.binding.launcher.window Ctrl+space
+set_from_resource $wm.program.launcher.window wm.program.launcher.window rofi -show window -theme $rofiTheme
+# set_from_resource $wm.program.launcher.window wm.program.launcher.window ilia -p windows -t $ilia.stylesheet
+bindsym $mod+$wm.binding.launcher.window exec $wm.program.launcher.window
+
+## Launch // File Search // <><Alt> Space ##
+set_from_resource $wm.binding.file_search wm.binding.file_search space
+set_from_resource $wm.program.file_search wm.program.file_search rofi -show find -modi find:/usr/share/rofi/modi/finder.sh
+# set_from_resource $wm.program.file_search wm.program.file_search ilia -p tracker -t $ilia.stylesheet
+bindsym $mod+$alt+$wm.binding.file_search exec $wm.program.file_search

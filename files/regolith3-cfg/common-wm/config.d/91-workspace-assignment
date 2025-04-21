@@ -1,0 +1,11 @@
+###############################################################################
+# Workspace program assignments 
+###############################################################################
+
+
+# Custom workspace program assignments
+assign [class="firefox"] → workspace number 2 $ws2
+assign [class="Slack"] → workspace number 4 $ws4
+assign [class="Spotify*"] → workspace number 6 $ws6
+assign [class="Zoom*"] → workspace number 7 $ws7
+assign [class="Steam"] → workspace number 10 $ws10
