@@ -1,0 +1,55 @@
+- name: "Install required dependencies"
+  apt:
+    name:
+      - "curl"
+      - "ca-certificates"
+      - "gnupg"
+      - "lsb-release"
+      - "software-properties-common"
+    state: "present"
+    update_cache: "yes"
+
+- name: "Install uv"
+  become: false
+  shell: "curl -LsSf https://astral.sh/uv/install.sh | sh"
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/bin/uv"
+
+- name: "Install pixi"
+  become: false
+  shell: "curl -sSf https://pixi.sh/install.sh | bash"
+  args:
+    creates: "{{ ansible_env.HOME }}/.pixi"
+
+- name: "Install micromamba"
+  become: false
+  shell: |
+    /bin/bash -c "/bin/bash <(curl -L micro.mamba.pm/install.sh)"
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/bin/micromamba"
+
+- name: "Add Docker GPG key and repo"
+  apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: "present"
+
+- name: "Get Ubuntu codename"
+  set_fact:
+    UBUNTU_CODENAME: "{{ lookup('file', '/etc/os-release') | regex_search('UBUNTU_CODENAME=(.*)', '\\1') | first }}"
+
+- name: "Add Docker APT repository"
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ UBUNTU_CODENAME }} stable"
+    state: "present"
+    filename: "docker"
+
+- name: "Install Docker and Docker Compose"
+  apt:
+    name:
+      - "docker-ce"
+      - "docker-ce-cli"
+      - "containerd.io"
+      - "docker-buildx-plugin"
+      - "docker-compose-plugin"
+    state: "present"
+    update_cache: "yes"

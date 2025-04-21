@@ -12,6 +12,9 @@
       become: true
     - role: "dotfiles"
       tags: "dotfiles"
+    - role: "devtools"
+      tags: "devtools"
+      become: true
     # - { role: projects-installer }
     # Server roles
     # - { role: docker, become: true }
