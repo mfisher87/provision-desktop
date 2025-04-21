@@ -1,6 +1,9 @@
 ## Turn on applet tray
 wm.bar.trayoutput: primary
 
+## Use custom i3status-rs config
+wm.bar.status_config: /home/mfisher/.config/regolith3/i3status-rs/config.toml
+
 ## Start applets
 wm.program.1: /usr/bin/caffeine-indicator
 
