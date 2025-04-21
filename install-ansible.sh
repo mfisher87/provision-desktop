@@ -20,7 +20,7 @@ if ! (ansible-galaxy collection list | grep slack >/dev/null 2>&1); then
     echo "Installing Ansible modules 'community.general'..."
     ansible-galaxy collection install community.general
 else
-    echo "Ansible Slack module already installed"
+    echo "Ansible community.general module already installed"
 fi
 
 
