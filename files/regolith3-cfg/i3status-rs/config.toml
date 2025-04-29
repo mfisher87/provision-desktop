@@ -35,6 +35,11 @@ interval = 1
 socket_path = "/tmp/rofi_notification_daemon"
 
 [[block]]
+block = "net"
+interval = 60
+format = ""  # Don't display activity; too distracting
+
+[[block]]
 block = "sound"
 driver = "pulseaudio"
 
