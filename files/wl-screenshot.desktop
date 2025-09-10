@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Wayland Screenshot
+Comment=Take screenshots using grim and slurp
+Exec=sh -c "$HOME/.local/bin/wl-screenshot.sh"
+Icon=applets-screenshooter
+Terminal=false
+NoDisplay=false
+Categories=Graphics;Photography;
+StartupNotify=true
