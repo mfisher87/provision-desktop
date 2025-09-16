@@ -4,8 +4,9 @@
 notify-send 'screenshot' 'please select area'
 
 mkdir -p /tmp/screenshots
-grim -g "$(slurp)" "/tmp/screenshots/$(date '+%Y-%m-%d_%H:%M:%S.png')"
+FN="/tmp/screenshots/$(date '+%Y-%m-%d_%H:%M:%S.png')"
 
-notify-send "screenshot saved to /tmp/screenshots/$(date '+%Y-%m-%d_%H:%M:%S'.png)"
+grim -g "$(slurp)" "${FN}"
+notify-send "screenshot saved to ${FN}"
 
-echo "file:///tmp/screenshots/$(date '+%Y-%m-%d_%H:%M:%S'.png)" | wl-copy
+cat "${FN}" | wl-copy --type image/png
