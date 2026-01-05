@@ -1,5 +1,13 @@
-theme = "semi-native"
-icons = "awesome"
+# IMPORTANT: This config is for i3status-rs v0.22.0, a very old version
+[theme]
+name = "semi-native"
+
+[theme.overrides]
+separator = "  "
+separator_fg = "#ffffff11"
+
+[icons]
+name = "awesome"
 
 [[block]]
 block = "net"
