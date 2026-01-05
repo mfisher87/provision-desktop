@@ -3,6 +3,7 @@ icons = "awesome"
 
 [[block]]
 block = "net"
+interval = 60
 
 [[block]]
 block = "disk_space"
@@ -23,7 +24,7 @@ format_swap = "{swap_used_percents}"
 # Uncomment below to enable battery
 [[block]]
 block = "battery"
-interval = 10
+interval = 180
 format = " {percentage}"
 full_format = " {percentage}"
 hide_missing = true
@@ -31,7 +32,7 @@ driver = "sysfs"
 
 [[block]]
 block = "rofication"
-interval = 1
+interval = 5
 socket_path = "/tmp/rofi_notification_daemon"
 
 [[block]]
