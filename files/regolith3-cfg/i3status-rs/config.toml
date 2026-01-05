@@ -43,4 +43,3 @@ driver = "pulseaudio"
 block = "time"
 interval = 5
 format = "%a %Y-%m-%d %H:%M"
-
