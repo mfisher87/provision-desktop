@@ -63,3 +63,6 @@ bindsym $mod+p exec notify-send -a picom "$(picom-ensure)"
 
 # Fix borders for gtk apps, e.g. Firefox
 for_window [class=.*] border pixel 2
+
+# Set size of Firefox picture-in-picture windows
+for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, resize set 400 400
