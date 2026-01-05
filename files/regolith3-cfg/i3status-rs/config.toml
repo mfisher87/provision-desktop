@@ -3,16 +3,17 @@ icons = "awesome"
 
 [[block]]
 block = "net"
+interval = 60
 
 [[block]]
 block = "disk_space"
 path = "/"
-info_type = "used"
 format = "{icon} {percentage}"
-alert_absolute = true
+info_type = "available"
 unit = "GB"
-alert = 50
-warning = 40
+alert_absolute = true
+warning = 20
+alert = 10
 
 [[block]]
 block = "memory"
@@ -23,7 +24,7 @@ format_swap = "{swap_used_percents}"
 # Uncomment below to enable battery
 [[block]]
 block = "battery"
-interval = 10
+interval = 180
 format = " {percentage}"
 full_format = " {percentage}"
 hide_missing = true
@@ -31,13 +32,8 @@ driver = "sysfs"
 
 [[block]]
 block = "rofication"
-interval = 1
+interval = 5
 socket_path = "/tmp/rofi_notification_daemon"
-
-[[block]]
-block = "net"
-interval = 60
-format = ""  # Don't display activity; too distracting
 
 [[block]]
 block = "sound"
@@ -47,4 +43,3 @@ driver = "pulseaudio"
 block = "time"
 interval = 5
 format = "%a %Y-%m-%d %H:%M"
-
