@@ -4,6 +4,11 @@ wm.bar.trayoutput: primary
 ## Use custom i3status-rs config
 wm.bar.status_config: /home/mfisher/.config/regolith3/i3status-rs/config.toml
 
+## Bar appearance
+wm.bar.separatorchar: "  "
+wm.bar.separator.color: "#268bd222"
+
+
 ## Start applets
 wm.program.1: /usr/bin/caffeine-indicator
 
